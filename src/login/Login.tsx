@@ -71,7 +71,7 @@ function Login() {
             className="border rounded-md p-2 bg-white"
           />
           <ReCAPTCHA
-            sitekey="6LfHgscpAAAAABVhGz60gJ5JeJ_ADGFIrhDrqKYH"
+            sitekey="6LeeoscpAAAAAGD8hBAsqICugbEcVARH42o_JDT8"
             onChange={onChangeRecaptcha}
           />
           <button
