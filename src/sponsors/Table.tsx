@@ -32,7 +32,9 @@ const UserRow: React.FC<{ user: IUser; index: number }> = ({ user, index }) => {
       <td className="px-4 py-2">{user.phone}</td>
       <td className="px-4 py-2">{user.sum}</td>
       <td className="px-4 py-2">{user.spent}</td>
-      <td className="px-4 py-2">{new Date(user?.created_at)?.toDateString()}</td>
+      <td className="px-4 py-2">
+        {user?.created_at ? new Date(user?.created_at)?.toDateString() : ""}
+      </td>
       <td className="px-4 py-2">{user.get_status_display}</td>
     </tr>
   );

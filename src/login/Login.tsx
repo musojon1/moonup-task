@@ -1,8 +1,8 @@
 import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function Login() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function Login() {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setFormData((p) => ({ ...p, [event.target.name]: event.target.value }));
   };
-  const onChangeRecaptcha = (event) => {
+  const onChangeRecaptcha = (event: string | null): void => {
     setRecaptchaValue(!!event);
   };
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
