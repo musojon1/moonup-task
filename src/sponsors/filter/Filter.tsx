@@ -1,17 +1,22 @@
-function Filter({ fetchData }: { fetchData: (e: string) => void }) {
+import { ChangeEvent } from "react";
+import ButtonGroup from "./ButtonGroup";
+
+function Filter({
+  onChangeSearch,
+}: {
+  onChangeSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+}) {
   return (
     <div
       className="bg-white p-4 flex"
       style={{ justifyContent: "space-between" }}
     >
-      <button className="p-2 text-white" style={{ backgroundColor: "#3366FF" }}>
-        HOMIYLAR
-      </button>
+      <ButtonGroup />
       <input
         type="text"
         name="search"
         placeholder="Izlash"
-        onChange={(event) => fetchData(event?.target?.value)}
+        onChange={onChangeSearch}
         className="border rounded-md p-2"
         style={{ backgroundColor: "#E8E8E8" }}
       />

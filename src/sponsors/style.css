@@ -1,0 +1,22 @@
+.table {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+  width: 100%;
+  margin-top: 20px;
+}
+.title {
+  color: #b1b1b8;
+}
+td:first-child,
+th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+td:last-child,
+th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.button-group {
+  border: 2px solid #e0e7ff;
+  border-radius: 6px;
+}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -34,6 +34,9 @@ function Login() {
       navigate("/sponsors");
     }
   };
+  useEffect(() => {
+    localStorage.getItem("TOKEN") && navigate("/sponsors");
+  });
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="block w-1/4">

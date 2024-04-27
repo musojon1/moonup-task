@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Nav from "./Nav";
-import { Table } from "./Table";
-import Filter from "./Filter";
+import { Table } from "./table/Table";
+import Filter from "./filter/Filter";
+import "./style.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export interface IUser {
   id?: number;
@@ -19,23 +21,33 @@ export interface IUser {
 
 function Sponsors() {
   const [users, setUsers] = useState<IUser[]>();
+  const navigate = useNavigate();
+  const { search } = useLocation();
+  const params = useMemo(() => new URLSearchParams(search), [search]);
 
-  const fetchData = async (search: string) => {
+  const fetchData = async () => {
     const { data } = await axios.get(
-      `https://club.metsenat.uz/api/v1/sponsor-list/?saerch=${search}`
+      `https://club.metsenat.uz/api/v1/sponsor-list/?saerch=${
+        params.get("search") ?? ""
+      }&page=${params.get("page") ?? 1}`
     );
     setUsers(data?.results);
   };
+
+  const onChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    navigate(
+      `/sponsors?search=${event.target.value}&page=${params.get("page") ?? 1}`
+    );
+    fetchData();
+  };
   useEffect(() => {
-    fetchData("");
-  }, []);
+    fetchData();
+  }, [params.get("search"), params.get("page")]);
   return (
     <>
       <Nav />
-      <Filter fetchData={fetchData} />
-      <div className="p-3">
-        <Table users={users} />
-      </div>
+      <Filter onChangeSearch={onChangeSearch} />
+      <Table users={users} />
     </>
   );
 }
